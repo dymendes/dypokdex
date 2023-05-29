@@ -3,7 +3,9 @@
     <Header v-on:search="search($event)"/>
 
     <main class="pokedex">
-      <Pokemon v-for="pokemon in pokemonSearch" :key="pokemon.url" :name="pokemon.name" :link="pokemon.url"/>
+      <div class="list">
+        <Pokemon v-for="pokemon in pokemonSearch" :key="pokemon.url" :name="pokemon.name" :link="pokemon.url"/>
+      </div>
 
       <button class="showmore" v-show="limit < 151 && !query.length" v-on:click="showmore">Show more pokemons</button>
     </main>
@@ -70,16 +72,20 @@ export default (await import("vue")).defineComponent({
     color: black;
   }
 
-  #app {
-    display: grid;
+ #app .pokedex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 15px;
+    padding: 30px;
   }
 
-  #app .pokedex {
+  #app .list {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 25px;
-    padding: 25px;
-    justify-self: center;
+    gap: 15px;
   }
 
   #app .pokedex .showmore {
